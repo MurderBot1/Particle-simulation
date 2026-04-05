@@ -84,7 +84,7 @@ ___
 # Additional Setup For IDEs
 Instructions for setting up this project for your IDE
 
-## <img src="images/vscode.png" hight="20" /> Visual Studio Code
+## <img src="images/vscode.png" height="20" /> Visual Studio Code
 Setup Instructions : 
 1. Go to the settings cog in the bottom left corner
 2. Go to the workspace tab
@@ -138,7 +138,7 @@ Setup Instructions :
 Additional Info : 
  - To build you can now do ``` ctrl + shift + B ```
 
-## <img src="images/visualstudio.png" hight="20" /> Visual Studio
+## <img src="images/visualstudio.png" height="20" /> Visual Studio
 
 
 ___
