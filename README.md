@@ -58,7 +58,12 @@ sudo zypper install gcc gcc-c++ make
 2. To verify run ``` gcc --version ```
 
 ### Mac
-1. 
+1. Install Homebrew with
+```
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"  
+```
+2. Install GCC with ``` brew install gcc  ```
+4. To verify run ``` gcc --version ``` 
 
 ## Premake
 1. Go to [premake](https://premake.github.io/download)
