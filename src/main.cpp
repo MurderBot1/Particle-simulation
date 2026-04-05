@@ -20,13 +20,70 @@ Vector2 bounds = initializeVector2D;
 const int numTypeOne = 1000;
 const int numTypeTwo = 1000;
 const int numTypeThree = 1000;
-const int numTypeFour = 000;
+const int numTypeFour = 250;
 
 //attraction randomized value = ((std::rand() % 750)) + 250
 //range rondomized value = ((std::rand() % 750)) + 250
 //collision range randomized value = (std::rand() % 15) + 5
 
 particleData particles[numTypeOne + numTypeTwo + numTypeThree + numTypeFour];
+
+inline void OnParticleCollision(particleData& particle, const particleData& other, float inverseDist, float dist)
+{
+    if(particle.type == ParticleTypes::PARTICLE1)
+    {
+        if (other.type == ParticleTypes::PARTICLE1)
+        {
+            particle.Direction = { (other.position.x - particle.position.x) * inverseDist, (other.position.y - particle.position.y) * inverseDist };
+        }
+
+        if (other.type == ParticleTypes::PARTICLE2)
+        {
+            particle.Direction = { ((other.position.x - particle.position.x) * inverseDist * -1), ((other.position.y - particle.position.y) * inverseDist * -1) };
+        }
+
+        if (other.type == ParticleTypes::PARTICLE3)
+        {
+            particle.Direction = { (other.position.x - particle.position.x) * inverseDist, (other.position.y - particle.position.y) * inverseDist };
+        }
+    }
+    
+    if(particle.type == ParticleTypes::PARTICLE2)
+    {
+        if (other.type == ParticleTypes::PARTICLE1)
+        {
+            particle.Direction = { (other.position.x - particle.position.x) * inverseDist, (other.position.y - particle.position.y) * inverseDist };
+        }
+
+        if (other.type == ParticleTypes::PARTICLE3)
+        {
+            particle.Direction = { (other.position.x - particle.position.x) * inverseDist, (other.position.y - particle.position.y) * inverseDist };
+        }
+
+        if (other.type == ParticleTypes::PARTICLE2)
+        {
+            particle.Direction = { (other.position.x - particle.position.x) * inverseDist, (other.position.y - particle.position.y) * inverseDist };
+        }
+    }
+
+    if (particle.type == ParticleTypes::PARTICLE3 && other.type == ParticleTypes::PARTICLE3)
+    {
+        particle.Direction = { (other.position.x - particle.position.x) * inverseDist * -1, (other.position.y - particle.position.y) * inverseDist * -1 };
+    }
+
+    if(particle.type == ParticleTypes::PARTICLE1)
+    {
+        if(other.type != ParticleTypes::PARTICLE4)
+        {
+            particle.Direction = { (other.position.x - particle.position.x) / (dist * particle.DrawRadius), (other.position.y - particle.position.y) / (dist * particle.DrawRadius)};
+        }
+
+        if(other.type == ParticleTypes::PARTICLE4)
+        {
+            particle.Direction = { (other.position.x - particle.position.x) / 10, (other.position.y - particle.position.y) / 10};
+        }
+    }
+}
 
 void update()
 {
@@ -49,60 +106,17 @@ void update()
                     ? 0.0001
                     : dist;
 
-            float inversDist = 1 / dist;
+            float inverseDist = 1 / dist;
 
             neighbourCount++;
 
             if (dist > particle.collisionRange + particle.DrawRadius)
             {
-                if (particle.type == ParticleTypes::PARTICLE1 && particleDetected.type == ParticleTypes::PARTICLE1)
-                {
-                    particle.Direction = { (particleDetected.position.x - particle.position.x) * inversDist, (particleDetected.position.y - particle.position.y) * inversDist };
-                }
-
-                if (particle.type == ParticleTypes::PARTICLE2 && particleDetected.type == ParticleTypes::PARTICLE1)
-                {
-                    particle.Direction = { (particleDetected.position.x - particle.position.x) * inversDist, (particleDetected.position.y - particle.position.y) * inversDist };
-                }
-
-                if (particle.type == ParticleTypes::PARTICLE1 && particleDetected.type == ParticleTypes::PARTICLE2)
-                {
-                    particle.Direction = { ((particleDetected.position.x - particle.position.x) * inversDist * -1), ((particleDetected.position.y - particle.position.y) * inversDist * -1) };
-                }
-
-                if (particle.type == ParticleTypes::PARTICLE1 && particleDetected.type == ParticleTypes::PARTICLE3)
-                {
-                    particle.Direction = { (particleDetected.position.x - particle.position.x) * inversDist, (particleDetected.position.y - particle.position.y) * inversDist };
-                }
-
-                if (particle.type == ParticleTypes::PARTICLE2 && particleDetected.type == ParticleTypes::PARTICLE3)
-                {
-                    particle.Direction = { (particleDetected.position.x - particle.position.x) * inversDist, (particleDetected.position.y - particle.position.y) * inversDist };
-                }
-
-                if (particle.type == ParticleTypes::PARTICLE2 && particleDetected.type == ParticleTypes::PARTICLE2)
-                {
-                    particle.Direction = { (particleDetected.position.x - particle.position.x) * inversDist, (particleDetected.position.y - particle.position.y) * inversDist };
-                }
-
-                if (particle.type == ParticleTypes::PARTICLE3 && particleDetected.type == ParticleTypes::PARTICLE3)
-                {
-                    particle.Direction = { (particleDetected.position.x - particle.position.x) * inversDist * -1, (particleDetected.position.y - particle.position.y) * inversDist * -1 };
-                }
-
-                if(particle.type == ParticleTypes::PARTICLE4 && particleDetected.type != ParticleTypes::PARTICLE4)
-                {
-                    particle.Direction = { (particleDetected.position.x - particle.position.x) / (dist * dist), (particleDetected.position.y - particle.position.y) / (dist * dist)};
-                }
-
-                if(particle.type == ParticleTypes::PARTICLE4 && particleDetected.type == ParticleTypes::PARTICLE4)
-                {
-                    particle.Direction = { (particleDetected.position.x - particle.position.x) / 10, (particleDetected.position.y - particle.position.y) / 10};
-                }
+                OnParticleCollision(particle, particleDetected, inverseDist, dist);
             }
             else
             {
-                particle.CollisionAttractions = { ((particleDetected.position.x - particle.position.x) * inversDist * -1), ((particleDetected.position.y - particle.position.y) * inversDist * -1) };
+                particle.CollisionAttractions = { ((particleDetected.position.x - particle.position.x) * inverseDist * -1), ((particleDetected.position.y - particle.position.y) * inverseDist * -1) };
 
                 particle.velocityX += particle.CollisionAttractions.x * (particleDetected.Attraction + (particle.densityValue * neighbourCount));
                 particle.velocityY += particle.CollisionAttractions.y * (particleDetected.Attraction + (particle.densityValue * neighbourCount));
@@ -163,7 +177,6 @@ void update()
     }
 }
 
-
 int main() {
     std::srand(std::time(nullptr)); // seed with current time
 
@@ -191,6 +204,7 @@ int main() {
         if (particle.id >= numTypeOne + numTypeTwo + numTypeThree && particle.id < numTypeOne + numTypeTwo + numTypeThree + numTypeFour)
         {
             particle.type = ParticleTypes::PARTICLE4;
+            particle.DrawRadius += std::rand() % 5 - 1;
         }
     }
 
