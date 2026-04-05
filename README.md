@@ -17,7 +17,7 @@ ___
 
 # Additional Install Info 
 ## GCC
-Windows : 
+### Windows
 1. Go to [Msys2](https://www.msys2.org/)
 2. Download and run the installer
 3. Open ``` MSYS2 MINGW64 ```
@@ -26,10 +26,38 @@ Windows :
 6. Add ``` C:\msys64\ucrt64\bin ``` to your path
 7. Verify with ``` gcc --version ```
 
-Linux :  
-1. 
+### Linux
+#### Ubuntu / Debian  
+1. Open a terminal and run
+```
+sudo apt update  
+sudo apt install build-essential
+```  
+2. To verify run ``` gcc --version ```  
 
-Mac :  
+#### Fedora  
+1. Open a terminal and run
+```
+sudo dnf install gcc gcc-c++ make  
+```
+2. To verify run ``` gcc --version ```
+
+#### Arch / Manjaro  
+1. Open a terminal and run
+```
+sudo pacman -Syu
+sudo pacman -S base-devel
+```
+2. To verify run ``` gcc --version ```
+
+#### OpenSUSE 
+1. Open a terminal and run
+```
+sudo zypper install gcc gcc-c++ make  
+```
+2. To verify run ``` gcc --version ```
+
+### Mac
 1. 
 
 ## Premake
