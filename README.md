@@ -17,35 +17,35 @@ ___
 
 # Additional Install Info 
 ## GCC
-Windows :  
-
+Windows : 
+1. Go to [Msys2](https://www.msys2.org/)
+2. Download and run the installer
+3. Open ``` MSYS2 MINGW64 ```
+4. Run ``` pacman -Syu ```
+5. Then run ``` pacman -S mingw-w64-ucrt-x86_64-gcc ```
+6. Add ``` C:\msys64\ucrt64\bin ``` to your path
+7. Verify with ``` gcc --version ```
 
 Linux :  
-
+1. 
 
 Mac :  
+1. 
 
-  
 ## Premake
-Windows :  
+1. Go to [premake](https://premake.github.io/download)
+2. Download the premake prebuilt binaries
+3. Extract the installed zip
+4. Move the premake binary to desired location
+5. Add that to path
 
-
-Linux :  
-
-
-Mac :  
-
-  
 ## Ninja
-Windows :  
+1. Go to [ninja](https://github.com/ninja-build/ninja/releases)
+2. Download the ninja zip for your OS
+3. Extract the ninja zip
+4. Move the ninja binary to desired location
+5. Add that to path
 
-
-Linux :  
-
-
-Mac :  
-
-  
 ___
 
 # Additional Setup For IDEs
