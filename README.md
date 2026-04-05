@@ -63,7 +63,7 @@ sudo zypper install gcc gcc-c++ make
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"  
 ```
 2. Install GCC with ``` brew install gcc  ```
-4. To verify run ``` gcc --version ``` 
+3. To verify run ``` gcc --version ``` 
 
 ## Premake
 1. Go to [premake](https://premake.github.io/download)
@@ -84,7 +84,7 @@ ___
 # Additional Setup For IDEs
 Instructions for setting up this project for your IDE
 
-## Visual Studio Code
+## <img src="images/vscode.png" hight="20" /> Visual Studio Code
 Setup Instructions : 
 1. Go to the settings cog in the bottom left corner
 2. Go to the workspace tab
@@ -137,5 +137,8 @@ Setup Instructions :
 
 Additional Info : 
  - To build you can now do ``` ctrl + shift + B ```
+
+## <img src="images/visualstudio.png" hight="20" /> Visual Studio
+
 
 ___
