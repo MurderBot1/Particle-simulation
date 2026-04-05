@@ -16,7 +16,36 @@ ___
 ___
 
 # Additional Install Info 
+## GCC
+Windows :  
 
+
+Linux :  
+
+
+Mac :  
+
+  
+## Premake
+Windows :  
+
+
+Linux :  
+
+
+Mac :  
+
+  
+## Ninja
+Windows :  
+
+
+Linux :  
+
+
+Mac :  
+
+  
 ___
 
 # Additional Setup For IDEs
