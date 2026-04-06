@@ -5,7 +5,7 @@
 #include "constants.h"
 #include "types.h"
 
-class particleData
+class Particle
 {
 public:
 
@@ -23,7 +23,7 @@ public:
     float DrawRadius = 3;
     ParticleTypes type = ParticleTypes::PARTICLE3;
 
-    particleData();
+    Particle();
 private:
     static int lastID;
 };

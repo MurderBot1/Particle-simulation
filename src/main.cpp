@@ -26,9 +26,9 @@ const int numTypeFour = 250;
 //range rondomized value = ((std::rand() % 750)) + 250
 //collision range randomized value = (std::rand() % 15) + 5
 
-particleData particles[numTypeOne + numTypeTwo + numTypeThree + numTypeFour];
+Particle particles[numTypeOne + numTypeTwo + numTypeThree + numTypeFour];
 
-inline void OnParticleCollision(particleData& particle, const particleData& other, float inverseDist, float dist)
+inline void OnParticleCollision(Particle& particle, const Particle& other, float inverseDist, float dist)
 {
     if(particle.type == ParticleTypes::PARTICLE1)
     {
@@ -88,13 +88,13 @@ inline void OnParticleCollision(particleData& particle, const particleData& othe
 void update()
 {
     float deltaTime = Time::DeltaTime();
-    for (particleData& particle : particles)
+    for (Particle& particle : particles)
     {
         particle.CollisionAttractions = initializeVector2D;
 
         int neighbourCount = 1;
 
-        for (const particleData& particleDetected : particles)
+        for (const Particle& particleDetected : particles)
         {
             if (particleDetected.id == particle.id) continue;
 
@@ -183,7 +183,7 @@ int main() {
     SetConfigFlags(FLAG_VSYNC_HINT | FLAG_MSAA_4X_HINT | FLAG_FULLSCREEN_MODE);
     InitWindow(0, 0, "raylib fullscreen");
 
-    for (particleData& particle : particles)
+    for (Particle& particle : particles)
     {
         particle.position = { (float)(std::rand() % GetScreenWidth()), (float)(std::rand() % GetScreenHeight()) };
 

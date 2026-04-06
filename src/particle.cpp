@@ -1,8 +1,8 @@
 #include "particle.h"
 
-int particleData::lastID = 0;
+int Particle::lastID = 0;
 
-particleData::particleData() 
+Particle::Particle() 
 {
     id = lastID;
     lastID++;
